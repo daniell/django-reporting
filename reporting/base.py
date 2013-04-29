@@ -9,7 +9,13 @@ from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
 
-from filterspecs import *
+try:
+    from filterspecs import *
+except:
+    from django.contrib.admin.filters import (FieldListFilter, 
+          RelatedFieldListFilter)
+    FilterSpec = FieldListFilter
+    LookupFilterSpec = RelatedFieldListFilter
 
 
 def get_model_field(model, name):
